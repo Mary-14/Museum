@@ -1,20 +1,16 @@
 package com.sobol.user.test_project;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by User on 09.04.2018.
- */
 
 public class Adapter extends RecyclerView.Adapter<ViewHolder> {
-
-    static final String[] MOVIES_TITLES = new String[]{"Coco", "Star Wars: The Last Jedi", "Ready Player One", "Black Panther"};
-    static final String[] MOVIES_POSTERS = new String[]{"/eKi8dIrr8voobbaGzDpe8w0PVbC.jpg", "/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg", "/pU1ULUq8D3iRxl1fdX2lZIzdHuI.jpg", "/uxzzxijgPIY7slzFvMotPv8wjKA.jpg"};
 
     Context context;
 
@@ -25,22 +21,41 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-      View v = inflater.inflate(R.layout.layout_item, parent, false);
-      ViewHolder vH= new ViewHolder(v);
+      View view = inflater.inflate(R.layout.layout_item, parent, false);
+      ViewHolder vH= new ViewHolder(view);
         return vH;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        String title = MOVIES_TITLES[position];
-        String posters = MOVIES_POSTERS[position];
-        holder.posterImageView.set(posters);
+        final Movie movie = Database.MOVIES[position];
+        String title = movie.title;
+        //holder.posterImageView.setBackground(posters);
         holder.titleTextView.setText(title);
+        int randomColor = 0x00FF000000 + (int)(Math.random() * 0x01000000);
+        holder.posterImageView.setBackgroundColor(randomColor);
+
+   holder.itemView.setOnClickListener(new View.OnClickListener(){
+       @Override
+       public void onClick(View view) {
+           MovieActivity(movie);
+       }
+   });
+
     }
 
     @Override
     public int getItemCount() {
-        return MOVIES_TITLES.length;
+        return Database.MOVIES.length;
     }
+
+    private void MovieActivity(Movie movie){
+    Intent intent = new Intent(context, MovieActivity.class);
+    intent.putExtra("MOVIE", movie);
+    context.startActivity(intent);
+
+
+    }
+
 }
