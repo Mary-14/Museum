@@ -29,17 +29,17 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        final Movie movie = Database.MOVIES[position];
-        String title = movie.title;
-        //holder.posterImageView.setBackground(posters);
+        final Museum museum = DatabaseMuseum.MUSEUMS [position];
+        String title = museum.title;
+       // holder.photoImageView.setBackground();
         holder.titleTextView.setText(title);
         int randomColor = 0x00FF000000 + (int)(Math.random() * 0x01000000);
-        holder.posterImageView.setBackgroundColor(randomColor);
+        holder.photoImageView.setBackgroundColor(randomColor);
 
    holder.itemView.setOnClickListener(new View.OnClickListener(){
        @Override
        public void onClick(View view) {
-           MovieActivity(movie);
+           MuseumActivity(museum);
        }
    });
 
@@ -47,15 +47,13 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return Database.MOVIES.length;
+        return DatabaseMuseum.MUSEUMS.length;
     }
 
-    private void MovieActivity(Movie movie){
-    Intent intent = new Intent(context, MovieActivity.class);
-    intent.putExtra("MOVIE", movie);
+    private void MuseumActivity(Museum museum){
+    Intent intent = new Intent(context, MuseumActivity.class);
+    intent.putExtra("MUSEUM", museum);
     context.startActivity(intent);
-
-
     }
 
 }

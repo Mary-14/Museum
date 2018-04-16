@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView= findViewById(R.id.recycler_view);
-        
-       Adapter adapter = new Adapter(MainActivity.this);
+
+        Adapter adapter = new Adapter(MainActivity.this);
        recyclerView.setAdapter(adapter);
-       recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
+       recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
 }

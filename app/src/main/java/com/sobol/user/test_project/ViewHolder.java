@@ -12,7 +12,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     View itemView;
     TextView titleTextView;
-    ImageView posterImageView;
+    ImageView photoImageView;
 
     public ViewHolder(View itemView) {
         super(itemView);
@@ -20,7 +20,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         this.itemView = itemView;
 
         titleTextView = itemView.findViewById(R.id.title_text_view);
-        posterImageView = itemView.findViewById(R.id.poster_image_view);
+       photoImageView = itemView.findViewById(R.id.photo_image_view);
 
     }
 }
