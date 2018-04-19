@@ -1,8 +1,5 @@
 package com.sobol.user.test_project;
 
-/**
- * Created by User on 16.04.2018.
- */
 
 public class DatabaseMuseum {
     public static final Museum[] MUSEUMS = {

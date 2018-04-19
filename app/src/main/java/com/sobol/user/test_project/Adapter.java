@@ -31,7 +31,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
         final Museum museum = DatabaseMuseum.MUSEUMS [position];
         String title = museum.title;
-       // holder.photoImageView.setBackground();
+     //   holder.photoImageView.setBackground(photo);
         holder.titleTextView.setText(title);
         int randomColor = 0x00FF000000 + (int)(Math.random() * 0x01000000);
         holder.photoImageView.setBackgroundColor(randomColor);
