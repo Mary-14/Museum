@@ -28,21 +28,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView= findViewById(R.id.recycler_view);
-
-        Adapter adapter = new Adapter(MainActivity.this);
-       recyclerView.setAdapter(adapter);
-       recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // отображаем ДОМОЙ
-        getSupportActionBar().setHomeButtonEnabled(true); // включаем ДОМОЙ
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout); // находим дровер
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0); // создаём штуку, которая будет анимировать иконку (и не только)
-        mDrawerLayout.addDrawerListener(mDrawerToggle); // подписываем её на события открытия и закрытия дровера (чтобы она знала, когда нужно анимировать кнопку)
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
 
     }
 

@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
+
+        <fragment
+            android:id="@+id/fragment_contener"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical">
+            android:name="com.sobol.user.test_project.fragments.MuseumsFragment"/>
 
-        </android.support.v7.widget.RecyclerView>
     </FrameLayout>
 
 
@@ -27,6 +27,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#111">
+
         <android.support.design.widget.NavigationView
             android:id="@+id/navigation_view"
             android:layout_width="wrap_content"

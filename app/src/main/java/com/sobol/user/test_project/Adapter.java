@@ -1,5 +1,7 @@
 package com.sobol.user.test_project;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -12,15 +14,15 @@ import android.view.ViewGroup;
 
 public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
-    Context context;
+    MainActivity activity;
 
-    public Adapter(Context context) {
-        this.context = context;
+    public Adapter(MainActivity activity) {
+        this.activity = activity;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(activity);
       View view = inflater.inflate(R.layout.layout_item, parent, false);
       ViewHolder vH= new ViewHolder(view);
         return vH;
@@ -50,8 +52,14 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
         return DatabaseMuseum.MUSEUMS.length;
     }
 
-    private void MuseumActivity(Museum museum){
-    Intent intent = new Intent(context, MuseumActivity.class);
+    private void showMuseumActivity(Museum museum){
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+
+
+
+
+        Intent intent = new Intent(context, MuseumActivity.class);
     intent.putExtra("MUSEUM", museum);
     context.startActivity(intent);
     }

@@ -9,8 +9,5 @@ public class MuseumActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_museum);
-
-        Museum museum = (Museum) getIntent().getSerializableExtra("Museum");
-        getSupportActionBar().setTitle(museum.title);
     }
 }
