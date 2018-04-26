@@ -11,10 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sobol.user.test_project.fragments.MuseumFragment;
+import com.sobol.user.test_project.fragments.MuseumsFragment;
+
 
 public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
     MainActivity activity;
+
+
 
     public Adapter(MainActivity activity) {
         this.activity = activity;
@@ -41,7 +46,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
    holder.itemView.setOnClickListener(new View.OnClickListener(){
        @Override
        public void onClick(View view) {
-           MuseumActivity(museum);
+          showMuseumActivity(museum);
        }
    });
 
@@ -52,16 +57,13 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
         return DatabaseMuseum.MUSEUMS.length;
     }
 
-    private void showMuseumActivity(Museum museum){
+    private void showMuseumActivity(Museum museum) {
+        MuseumFragment fragment = MuseumFragment.newInstance(museum);
         activity.getSupportFragmentManager()
                 .beginTransaction()
+                .replace(R.id.content, fragment, null)
+                .commit();
 
-
-
-
-        Intent intent = new Intent(context, MuseumActivity.class);
-    intent.putExtra("MUSEUM", museum);
-    context.startActivity(intent);
     }
 
 }
