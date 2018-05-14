@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
+        DatabaseMuseum.load();
+
     }
 
     @Override

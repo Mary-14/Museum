@@ -36,12 +36,12 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        final Museum museum = DatabaseMuseum.MUSEUMS [position];
+       final Museum museum = DatabaseMuseum.MUSEUMS.get(position);
         String title = museum.title;
-     //   holder.photoImageView.setBackground(photo);
+     //  holder.photoImageView.setBackground(photo);
         holder.titleTextView.setText(title);
-        int randomColor = 0x00FF000000 + (int)(Math.random() * 0x01000000);
-        holder.photoImageView.setBackgroundColor(randomColor);
+        //int randomColor = 0x00FF000000 + (int)(Math.random() * 0x01000000);
+        //holder.photoImageView.setBackgroundColor(randomColor);
 
    holder.itemView.setOnClickListener(new View.OnClickListener(){
        @Override
@@ -54,7 +54,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return DatabaseMuseum.MUSEUMS.length;
+        return DatabaseMuseum.MUSEUMS.size();
     }
 
     private void showMuseumActivity(Museum museum) {
