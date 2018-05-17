@@ -32,7 +32,7 @@ public class MuseumFragment extends Fragment {
 
         Museum museum = (Museum) getArguments().getSerializable("MUSEUM");
         AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.getSupportActionBar().setTitle(museum.title);
+        //activity.getSupportActionBar().setTitle(museum.title);
 
         return view;
     }

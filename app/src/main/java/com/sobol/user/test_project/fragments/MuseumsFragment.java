@@ -14,9 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sobol.user.test_project.Adapter;
+import com.sobol.user.test_project.DatabaseMuseum;
 import com.sobol.user.test_project.MainActivity;
 import com.sobol.user.test_project.Museum;
 import com.sobol.user.test_project.R;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class MuseumsFragment extends Fragment {
@@ -35,4 +40,22 @@ public class MuseumsFragment extends Fragment {
         return view;
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(DatabaseMuseum.OnMuseumChangedEvent event) {
+
+    };
+
 }

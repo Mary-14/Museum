@@ -67,6 +67,8 @@ public class DatabaseMuseum {
         }
     }
 
-    public static class OnMuseumChangedEvent {}
+    public static class OnMuseumChangedEvent{
+
+    }
 
 }
