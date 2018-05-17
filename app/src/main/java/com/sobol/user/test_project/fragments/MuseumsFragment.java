@@ -26,13 +26,13 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class MuseumsFragment extends Fragment {
 
-
+    Adapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.museum_fragment, container, false);
 
         Context context = getContext();
-        Adapter adapter = new Adapter((MainActivity) context);
+        adapter = new Adapter((MainActivity) context);
         RecyclerView recyclerView= view.findViewById(R.id.recycler_view);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
@@ -55,7 +55,7 @@ public class MuseumsFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(DatabaseMuseum.OnMuseumChangedEvent event) {
-
+        adapter.notifyDataSetChanged();
     };
 
 }

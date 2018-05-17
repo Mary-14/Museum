@@ -56,7 +56,7 @@ public class DatabaseMuseum {
                 JSONObject museum1 = results.getJSONObject(i);
                 double lat = museum1.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
                 double lng = museum1.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
-                String place_id= museum1.getJSONObject("geometry").getString("place_id");
+                String place_id= museum1.getString("place_id");
 
                 Museum museum = new Museum(lat,lng, place_id);
                 MUSEUMS.add(museum);
