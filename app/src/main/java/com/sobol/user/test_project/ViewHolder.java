@@ -11,8 +11,8 @@ import com.sobol.user.test_project.R;
 public class ViewHolder extends RecyclerView.ViewHolder {
 
     View itemView;
-    TextView titleTextView;
-    ImageView photoImageView;
+   TextView titleTextView;
+   ImageView photoImageView;
 
     public ViewHolder(View itemView) {
         super(itemView);
