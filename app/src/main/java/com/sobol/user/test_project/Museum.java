@@ -9,9 +9,10 @@ public class Museum implements Serializable {
     public double lgn;
     public String place_id;
 
-    public Museum(double lat, double lgn, String place_id) {
+    public Museum(double lat, double lng, String placeId, String place_id) {
         this.lat = lat;
         this.lgn = lgn;
         this.place_id = place_id;
     }
+
 }
