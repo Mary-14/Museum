@@ -1,5 +1,6 @@
 package com.sobol.user.test_project.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.location.places.GeoDataClient;
@@ -24,24 +26,38 @@ import com.google.android.gms.location.places.PlacePhotoResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.sobol.user.test_project.DatabaseMuseum;
+import com.sobol.user.test_project.MainActivity;
 import com.sobol.user.test_project.Museum;
 import com.sobol.user.test_project.R;
 import com.sobol.user.test_project.ViewHolder;
 
 import static android.content.ContentValues.TAG;
-
-
+import static android.view.View.GONE;
 
 public class MuseumFragment extends Fragment {
 
+    GeoDataClient mGeoDataClient;
 
-    public static MuseumFragment newInstance(Museum museum) {
+    TextView titleTextView;
+    ImageView photoImageView;
+    ProgressBar progressBar;
+
+    static public MuseumFragment newInstance(Museum museum) {
         MuseumFragment fragment = new MuseumFragment();
         Bundle arguments = new Bundle();
         arguments.putSerializable("MUSEUM", museum );
         fragment.setArguments(arguments);
 
+
         return fragment;
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mGeoDataClient = Places.getGeoDataClient(context);
     }
 
     @Nullable
@@ -49,23 +65,30 @@ public class MuseumFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_museum, container, false);
-
         Museum museum = (Museum) getArguments().getSerializable("MUSEUM");
         AppCompatActivity activity = (AppCompatActivity) getActivity();
        // activity.getSupportActionBar().setTitle(museum.title);
 
+        titleTextView = view.findViewById(R.id.title_text_view);
+        photoImageView = view.findViewById(R.id.photo_image_view);
+        progressBar = view.findViewById(R.id.progress_bar);
+
+        getPhoto(museum.place_id);
+        getPlace(museum.place_id);
+
         return view;
     }
 
-    private void showPhoto(ViewHolder holder, Bitmap photo) {
-        holder.photoImageView.setImageBitmap(photo);
+    private void showPhoto(Bitmap photo) {
+        progressBar.setVisibility(GONE);
+        photoImageView.setImageBitmap(photo);
     }
 
-    private void showPlace(ViewHolder holder, Place place) {
-        holder.titleTextView.setText(place.getName());
+    private void showPlace(Place place) {
+        titleTextView.setText(place.getName());
     }
 
-    private void getPhoto(final ViewHolder holder, String placeId) {
+    private void getPhoto(String placeId) {
         final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
         photoMetadataResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoMetadataResponse>() {
             @Override
@@ -85,13 +108,13 @@ public class MuseumFragment extends Fragment {
                     public void onComplete(@NonNull Task<PlacePhotoResponse> task) {
                         PlacePhotoResponse photo = task.getResult();
                         Bitmap bitmap = photo.getBitmap();
-                        showPhoto(holder, bitmap);
+                        showPhoto(bitmap);
                     }
                 });
             }
         });
     }
-    private void getPlace(final ViewHolder holder, String placeId) {
+    private void getPlace(String placeId) {
         mGeoDataClient.getPlaceById(placeId).addOnCompleteListener(new OnCompleteListener<PlaceBufferResponse>() {
             @Override
             public void onComplete(@NonNull Task<PlaceBufferResponse> task) {
@@ -99,7 +122,7 @@ public class MuseumFragment extends Fragment {
                     PlaceBufferResponse places = task.getResult();
                     Place myPlace = places.get(0);
                     Log.i(TAG, "Place found: " + myPlace.getName());
-                    showPlace(holder, myPlace);
+                    showPlace(myPlace);
                 } else {
                     Log.e(TAG, "Place not found.");
                 }
