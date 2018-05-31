@@ -13,9 +13,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.sobol.user.test_project.fragments.MuseumFragment;
 import com.sobol.user.test_project.fragments.MuseumsFragment;
@@ -23,8 +25,8 @@ import com.sobol.user.test_project.fragments.MuseumsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    DrawerLayout mDrawerLayout;
-    ActionBarDrawerToggle mDrawerToggle;
+   /* DrawerLayout mDrawerLayout;
+    ActionBarDrawerToggle mDrawerToggle;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +40,14 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
 
-        ActionBar actionBar = getSupportActionBar();
+       /* ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0);
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);*/
 
         DatabaseMuseum.load();
 
@@ -55,14 +57,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        mDrawerToggle.syncState();
+       // mDrawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        mDrawerToggle.onConfigurationChanged(newConfig);
+      //  mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
 

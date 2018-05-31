@@ -80,6 +80,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
         activity.getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, fragment, null)
+                .addToBackStack("test")
                 .commit();
 
     }
